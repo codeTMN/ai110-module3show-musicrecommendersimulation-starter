@@ -249,7 +249,7 @@ I tested 9 user profiles (4 normal ones, 4 tricky edge cases, and 1 that uses th
 ## Limitations and Risks
 
 - **Genre fans get mixed results.** Genre is worth only 1.5 points, so a rock fan got drill, dancehall, and hip hop songs in their top 5 just because those songs had the right energy.
-- **Capital letters break it.** Typing "Hip Hop" instead of "hip hop" makes the genre and mood checks fail without any warning.
+- **Spelling has to match.** Typing "Hip Hop" with capitals used to break the genre and mood checks without any warning. I fixed that, but different spellings like "hip-hop" with a dash still won't match.
 - **The acoustic preference barely does anything.** It's worth so little that an "acoustic metal" fan still got all-electric songs.
 - **Small, uneven catalog.** Only 62 made-up songs, with 14 sad songs but only 3 romantic ones.
 - **It doesn't understand lyrics, language, or what you've listened to before.**
@@ -262,4 +262,4 @@ Read my full [**Model Card**](model_card.md) for the details.
 
 Building this showed me that a recommender is really just a way of turning "what you like" into numbers, and then comparing those numbers to every song. My version gives each song points for being close to the energy, mood, and sound you want, and the songs with the most points win. Even though it's simple math, the results felt like real recommendations, mostly because each song comes with its reasons. Real apps like Spotify do something bigger. They learn from millions of people's plays and skips, instead of a few rules that I picked by hand.
 
-The part that made me think the most was bias. Every weight I chose decided whose taste counts more. I put energy first because that's how I listen, but that made the system worse for someone who only listens to rock. The data had bias too: there are 14 sad songs but only 3 romantic ones, so some listeners just get more choices. Even small things like capital letters made the system quietly ignore what someone asked for. In a real app with millions of users, these small choices would decide which artists get heard and which ones get buried.
+The part that made me think the most was bias. Every weight I chose decided whose taste counts more. I put energy first because that's how I listen, but that made the system worse for someone who only listens to rock. The data had bias too: there are 14 sad songs but only 3 romantic ones, so some listeners just get more choices. Even small things like capital letters made the system quietly ignore what someone asked for, until I tested for it and fixed it. In a real app with millions of users, these small choices would decide which artists get heard and which ones get buried.

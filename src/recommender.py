@@ -117,6 +117,10 @@ def load_songs(csv_path: str) -> List[Dict]:
             songs.append(row)
     return songs
 
+def normalize(text) -> str:
+    """Lowercase and trim a label so "Hip Hop " matches "hip hop"."""
+    return str(text or "").strip().lower()
+
 def closeness(value: float, target: float, spread: float = 1.0) -> float:
     """Return 1.0 when value equals target, dropping to 0 once they are `spread` apart."""
     return max(0.0, 1.0 - abs(value - target) / spread)
@@ -142,10 +146,10 @@ def score_song(user_prefs: Dict, song: Dict, mode: ScoringMode = BALANCED) -> Tu
         add(mode.valence * closeness(song["valence"], user_prefs["target_valence"]),
             f"valence {song['valence']:.2f} vs your {user_prefs['target_valence']:.2f}")
 
-    if song["mood"] == user_prefs.get("favorite_mood"):
+    if normalize(song["mood"]) == normalize(user_prefs.get("favorite_mood")):
         add(mode.mood, f"mood match: {song['mood']}")
 
-    if song["genre"] == user_prefs.get("favorite_genre"):
+    if normalize(song["genre"]) == normalize(user_prefs.get("favorite_genre")):
         add(mode.genre, f"genre match: {song['genre']}")
 
     if user_prefs.get("likes_acoustic") is not None:
@@ -154,7 +158,8 @@ def score_song(user_prefs: Dict, song: Dict, mode: ScoringMode = BALANCED) -> Tu
 
     # Advanced features (Challenge 1): each one only counts if the user sets it
     if user_prefs.get("favorite_tags"):
-        shared = [tag for tag in song.get("mood_tags", []) if tag in user_prefs["favorite_tags"]][:2]
+        wanted = {normalize(tag) for tag in user_prefs["favorite_tags"]}
+        shared = [tag for tag in song.get("mood_tags", []) if normalize(tag) in wanted][:2]
         if shared:
             add(mode.tags * len(shared), f"mood tags: {' / '.join(shared)}")
 

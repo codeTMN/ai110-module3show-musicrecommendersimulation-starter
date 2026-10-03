@@ -78,7 +78,7 @@ Then it sorts all the songs from most points to least and shows you the top 5, w
 
 Other problems I found:
 
-- **Capital letters break matching.** If someone types "Hip Hop" instead of "hip hop", the genre and mood checks fail without any warning. The system falls back on energy only, and a sad country song (*Whiskey Letters*) tied for #1 for a chill hip hop fan.
+- **Capital letters used to break matching (now fixed).** When I first tested it, typing "Hip Hop" instead of "hip hop" made the genre and mood checks fail without any warning. The system fell back on energy only, and a sad country song (*Whiskey Letters*) tied for #1 for a chill hip hop fan. I fixed it so the system ignores capital letters and extra spaces. It still can't match different spellings like "hip-hop" with a dash.
 - **The acoustic preference barely matters.** It's only worth up to 1 point. When I tested an "acoustic metalhead", the system ignored the acoustic part and gave them electric metal songs that are almost 0% acoustic.
 - **Genres that aren't in the catalog fail quietly.** A k-pop fan gets happy songs from other genres. That's not bad, but the system never tells them there's no k-pop.
 - **Some moods have way more songs.** There are 14 sad songs but only 3 romantic and 3 angry ones, so sad listeners get much better choices.
@@ -103,7 +103,7 @@ I tested 4 normal listeners and 4 "edge case" listeners that were made to trick 
 | Edge: high energy but sad | pop, sad, energy 0.9, sad-sounding | Dancing Alone (pop) |
 | Edge: acoustic metalhead | metal, angry, energy 0.95, likes acoustic | Breaking Point (metal) |
 | Edge: genre not in catalog | k-pop, happy, energy 0.75 | Rooftop Lights (indie pop) |
-| Edge: capital letters | "Hip Hop", "Chill", energy 0.35 | Library Rain (lofi) and Whiskey Letters (country), tied |
+| Edge: capital letters | "Hip Hop", "Chill", energy 0.35 | Before the fix: Library Rain and Whiskey Letters (sad country), tied. After: Late Night Verses (hip hop) |
 
 For each one I checked if the top 5 matched the vibe the profile asked for, and if the reasons made sense.
 
@@ -120,7 +120,7 @@ For my own profile (Chill Hip Hop), yes. *Late Night Verses* is #1, and the rest
 - **High-Energy Pop vs Deep Intense Rock:** Both want high energy, but the pop fan gets happy songs and the rock fan gets darker, intense ones. Mood and valence are what split these two apart.
 - **Deep Intense Rock vs Chill Hip Hop:** *Crown Up* is a hip hop song, but it shows up for the **rock** fan, not the hip hop fan. It has the intense energy the rock fan wants, and it's way too intense for a chill listener. This is my "energy over genre" idea working.
 - **High-Energy Pop vs High energy but sad:** Same genre and almost the same energy, but changing the mood from happy to sad changes the whole list. The only pop song left is *Dancing Alone*, a sad dance song, and the rest are sad metal, drill, rock, and hip hop.
-- **Chill Hip Hop vs Capital letters:** These ask for the same thing, but typing "Hip Hop" with capitals made the genre and mood checks fail. *Late Night Verses* dropped from #1 to #4, and a sad country song tied for first. That one surprised me the most.
+- **Chill Hip Hop vs Capital letters:** These ask for the same thing, but at first, typing "Hip Hop" with capitals made the genre and mood checks fail. *Late Night Verses* dropped from #1 to #4, and a sad country song tied for first. That one surprised me the most, so I fixed it. Now the system lowercases words before comparing them, and *Late Night Verses* is back at #1 with an all-chill top 5. The scores are lower than my normal profile only because this profile doesn't set valence or acoustic.
 - **Acoustic metalhead vs Deep Intense Rock:** Both get loud, high-energy songs. The "likes acoustic" setting barely changed anything, because it's worth so few points.
 
 ### Why does *Gym Hero* show up for "Happy Pop" fans?
@@ -416,24 +416,25 @@ Profile: Edge: genre not in catalog   (mode: balanced)
 ```
 Profile: Edge: capital letters   (mode: balanced)
   favorite_genre=Hip Hop, favorite_mood=Chill, target_energy=0.35
-+---+---------------------+--------------+-------+----------------------------------+
-| # | Song                | Genre / Mood | Score | Why                              |
-+---+---------------------+--------------+-------+----------------------------------+
-| 1 | Library Rain        | lofi         | 4.00  | energy 0.35 vs your 0.35 (+4.00) |
-|   | by Paper Lanterns   | chill        |       |                                  |
-+---+---------------------+--------------+-------+----------------------------------+
-| 2 | Whiskey Letters     | country      | 4.00  | energy 0.35 vs your 0.35 (+4.00) |
-|   | by Cass Holloway    | sad          |       |                                  |
-+---+---------------------+--------------+-------+----------------------------------+
-| 3 | Coffee Shop Stories | jazz         | 3.92  | energy 0.37 vs your 0.35 (+3.92) |
-|   | by Slow Stereo      | relaxed      |       |                                  |
-+---+---------------------+--------------+-------+----------------------------------+
-| 4 | Late Night Verses   | hip hop      | 3.88  | energy 0.38 vs your 0.35 (+3.88) |
-|   | by Kay Mellow       | chill        |       |                                  |
-+---+---------------------+--------------+-------+----------------------------------+
-| 5 | Slow Motion Love    | r&b          | 3.88  | energy 0.38 vs your 0.35 (+3.88) |
-|   | by Nia Soul         | romantic     |       |                                  |
-+---+---------------------+--------------+-------+----------------------------------+
++---+--------------------+--------------+-------+----------------------------------+
+| # | Song               | Genre / Mood | Score | Why                              |
++---+--------------------+--------------+-------+----------------------------------+
+| 1 | Late Night Verses  | hip hop      | 7.38  | energy 0.38 vs your 0.35 (+3.88) |
+|   | by Kay Mellow      | chill        |       | mood match: chill (+2.00)        |
+|   |                    |              |       | genre match: hip hop (+1.50)     |
++---+--------------------+--------------+-------+----------------------------------+
+| 2 | Library Rain       | lofi         | 6.00  | energy 0.35 vs your 0.35 (+4.00) |
+|   | by Paper Lanterns  | chill        |       | mood match: chill (+2.00)        |
++---+--------------------+--------------+-------+----------------------------------+
+| 3 | Sunday Sheets      | pop          | 5.80  | energy 0.40 vs your 0.35 (+3.80) |
+|   | by Mira Vale       | chill        |       | mood match: chill (+2.00)        |
++---+--------------------+--------------+-------+----------------------------------+
+| 4 | Spacewalk Thoughts | ambient      | 5.72  | energy 0.28 vs your 0.35 (+3.72) |
+|   | by Orbit Bloom     | chill        |       | mood match: chill (+2.00)        |
++---+--------------------+--------------+-------+----------------------------------+
+| 5 | Midnight Coding    | lofi         | 5.72  | energy 0.42 vs your 0.35 (+3.72) |
+|   | by LoRoom          | chill        |       | mood match: chill (+2.00)        |
++---+--------------------+--------------+-------+----------------------------------+
 ```
 
 </details>
@@ -621,7 +622,7 @@ Profile: Edge: acoustic metalhead   (mode: balanced, diverse)
 
 ## 8. Future Work  
 
-1. **Fix the text matching.** Ignore capital letters, so "Hip Hop" matches "hip hop". Group similar genres into families, so "hip hop" and "drill" or "pop" and "indie pop" get partial credit.
+1. **Make the text matching smarter.** I already fixed capital letters. Next I'd handle different spellings ("hip-hop", "R&B" vs "r and b") and group similar genres into families, so "hip hop" and "drill" or "pop" and "indie pop" get partial credit.
 2. **Learn the weights instead of guessing them.** Right now I picked the points by hand. A real app would learn them from what people skip, replay, and save, and mix in collaborative filtering ("people like you also liked") so it can surprise you.
 3. **Make the acoustic setting a number instead of yes or no,** and give it more weight. Right now it's too weak to matter.
 
