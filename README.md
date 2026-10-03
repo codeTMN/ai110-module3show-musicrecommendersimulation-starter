@@ -43,6 +43,22 @@ The data also has `tempo_bpm` and `danceability`, but I don't use them in the sc
 - `target_valence`: how happy or sad they want the music (0 to 1). This one is optional.
 - `likes_acoustic`: whether they prefer acoustic songs (yes or no)
 
+### My taste profile
+
+This is the profile I'm using to test the system. It's someone who likes laid-back rap:
+
+```python
+user_prefs = {
+    "favorite_genre": "hip hop",
+    "favorite_mood": "chill",
+    "target_energy": 0.35,
+    "target_valence": 0.5,
+    "likes_acoustic": False,
+}
+```
+
+I checked if this profile can tell "intense rock" apart from "chill lofi". It can: *Storm Runner* (intense rock) scores 5.60, while *Library Rain* (chill lofi) scores 8.84. The energy and mood rules do most of that work.
+
 ### How a song gets its score
 
 Every song starts at 0 and earns points:
@@ -64,6 +80,29 @@ For energy and valence, the song gets more points the **closer** it is to what t
 3. Return the top songs (5 by default) along with the reasons each one scored well.
 
 Scoring decides how good one song is for you. Ranking compares all the songs and picks the best ones. Keeping these two steps separate means I can change the points without breaking the sorting, or change how songs are picked without touching the math.
+
+### Data flow
+
+```mermaid
+flowchart LR
+    A["User profile<br/>genre, mood, energy,<br/>valence, acoustic"] --> C
+    B["songs.csv<br/>62 songs"] --> C
+    C["Score each song<br/>(the loop)"] --> D["Sort by score<br/>highest first"]
+    D --> E["Top 5 songs<br/>+ reasons"]
+```
+
+### Why I didn't use the starter weights
+
+The course suggests +2.0 for genre, +1.0 for mood, plus points for energy. I tried that with my taste profile, and it put *Crown Up* (an intense, 0.88 energy rap song) in my top 5 just because it's hip hop. That's not what a chill listener wants. With my weights, the top 5 are all chill songs: *Late Night Verses*, *Sunday Sheets*, *Drift Current*, *Library Rain*, and *Midnight Coding*.
+
+### Biases I expect
+
+- **Energy might matter too much.** A song with the perfect energy can beat a song that matches both genre and mood. This could push songs from genres the user doesn't like.
+- **Some moods have way more songs than others.** There are 14 sad songs but only 3 romantic and 3 angry ones, so some users get a lot more choice than others.
+- **Exact word matching is strict.** "hip hop" and "drill" count as totally different genres, and "chill" and "relaxed" count as different moods, even though they're close.
+- **One favorite genre and one mood only.** Real people like lots of things, and their mood changes during the day.
+- **The song numbers are estimates.** The songs and their values were made up with AI help, based on what each genre usually sounds like. They aren't measured from real audio.
+- **No surprises.** The system only finds songs like what you already said you like. It can't find something new you'd love, like collaborative filtering can.
 
 ---
 
