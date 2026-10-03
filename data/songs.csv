@@ -1,63 +1,63 @@
-id,title,artist,genre,mood,energy,tempo_bpm,valence,danceability,acousticness
-1,Sunrise City,Neon Echo,pop,happy,0.82,118,0.84,0.79,0.18
-2,Midnight Coding,LoRoom,lofi,chill,0.42,78,0.56,0.62,0.71
-3,Storm Runner,Voltline,rock,intense,0.91,152,0.48,0.66,0.10
-4,Library Rain,Paper Lanterns,lofi,chill,0.35,72,0.60,0.58,0.86
-5,Gym Hero,Max Pulse,pop,intense,0.93,132,0.77,0.88,0.05
-6,Spacewalk Thoughts,Orbit Bloom,ambient,chill,0.28,60,0.65,0.41,0.92
-7,Coffee Shop Stories,Slow Stereo,jazz,relaxed,0.37,90,0.71,0.54,0.89
-8,Night Drive Loop,Neon Echo,synthwave,moody,0.75,110,0.49,0.73,0.22
-9,Focus Flow,LoRoom,lofi,focused,0.40,80,0.59,0.60,0.78
-10,Rooftop Lights,Indigo Parade,indie pop,happy,0.76,124,0.81,0.82,0.35
-11,Lagos Sunset,Ayo Rhythm,afrobeats,happy,0.72,104,0.86,0.88,0.20
-12,Palm Wine Evening,Kola Waves,afrobeats,relaxed,0.55,98,0.74,0.80,0.38
-13,Log Drum Nights,Soweto Keys,amapiano,chill,0.58,112,0.66,0.84,0.15
-14,Late Night Verses,Kay Mellow,hip hop,chill,0.38,86,0.52,0.70,0.30
-15,Crown Up,Blaze Carter,hip hop,intense,0.88,140,0.62,0.81,0.06
-16,Cold Streets,Grime Unit,drill,moody,0.78,142,0.28,0.74,0.08
-17,Empty Chair,June Hollow,folk,sad,0.22,68,0.18,0.35,0.94
-18,Porch Light Morning,Willow Creek,folk,happy,0.48,104,0.82,0.60,0.90
-19,Stomp and Holler,Barn Fire,country,energetic,0.80,138,0.78,0.68,0.72
-20,Velvet Hours,Nia Soul,r&b,romantic,0.45,76,0.58,0.68,0.40
-21,Rain on Glass,Lune Moth,classical,sad,0.15,64,0.22,0.20,0.97
-22,Perreo Hasta Ya,Fuego Sur,reggaeton,energetic,0.85,96,0.80,0.90,0.12
-23,Island Bounce,Yard Vibes,dancehall,happy,0.74,102,0.83,0.86,0.10
-24,Breaking Point,Ironclad,metal,angry,0.96,168,0.25,0.40,0.02
-25,Drift Current,Glass Harbor,liquid dnb,chill,0.50,172,0.60,0.55,0.20
-26,Dancing Alone,Mira Vale,pop,sad,0.70,120,0.30,0.78,0.15
-27,Paper Walls,The Static Kids,rock,sad,0.55,96,0.30,0.45,0.40
-28,Open Highway,Steel Avenue,rock,happy,0.80,140,0.75,0.60,0.25
-29,Glacier Hum,Orbit Bloom,ambient,focused,0.18,55,0.45,0.25,0.80
-30,Northern Drift,Still Waters,ambient,sad,0.22,62,0.25,0.30,0.70
-31,Blue Corner,Miles Avenue Trio,jazz,moody,0.42,100,0.35,0.50,0.85
-32,Swing Shift,Brass Alley,jazz,energetic,0.78,168,0.82,0.75,0.70
-33,Chrome Horizon,Neon Echo,synthwave,energetic,0.85,128,0.70,0.80,0.05
-34,Lost Arcade,Pixel Ghost,synthwave,sad,0.50,95,0.28,0.60,0.12
-35,Paper Planes Summer,Indigo Parade,indie pop,relaxed,0.52,108,0.76,0.66,0.55
-36,Bedroom Static,Soft Signal,indie pop,sad,0.40,88,0.30,0.52,0.60
-37,Sunday Groove,Soweto Keys,amapiano,happy,0.66,113,0.80,0.86,0.12
-38,Piano Smoke,Deep Kasi,amapiano,moody,0.52,110,0.40,0.78,0.18
-39,Back Block,Grime Unit,drill,intense,0.85,144,0.35,0.72,0.05
-40,Quiet Before,South Ends,drill,sad,0.55,140,0.20,0.65,0.15
-41,Dusty Road Home,Barn Fire,country,relaxed,0.42,92,0.70,0.55,0.85
-42,Whiskey Letters,Cass Holloway,country,sad,0.35,80,0.22,0.45,0.80
-43,Slow Motion Love,Nia Soul,r&b,romantic,0.38,70,0.62,0.62,0.45
-44,Call Me Back,Jaylen Rose,r&b,sad,0.48,84,0.25,0.66,0.30
-45,Spring Allegro,Vienna Strings,classical,happy,0.55,132,0.78,0.35,0.95
-46,Study Nocturne,Lune Moth,classical,focused,0.20,70,0.48,0.22,0.98
-47,Noche Lenta,Luna Calle,reggaeton,romantic,0.62,90,0.66,0.85,0.15
-48,Calor Total,Fuego Sur,reggaeton,happy,0.82,95,0.88,0.92,0.10
-49,Sunday Rub,Yard Vibes,dancehall,relaxed,0.58,92,0.72,0.82,0.20
-50,Bad Mind,Rudie King,dancehall,intense,0.88,104,0.55,0.85,0.06
-51,Ashes Fall,Ironclad,metal,sad,0.80,120,0.15,0.30,0.05
-52,Granite Throne,Stone Legion,metal,angry,0.94,180,0.30,0.38,0.01
-53,Ocean Pulse,Glass Harbor,liquid dnb,relaxed,0.55,174,0.70,0.58,0.25
-54,Rush Hour Rollers,Bass Theory,liquid dnb,energetic,0.88,174,0.72,0.65,0.05
-55,Owambe Party,Ayo Rhythm,afrobeats,energetic,0.86,110,0.88,0.90,0.12
-56,Missing You Lagos,Temi Grace,afrobeats,sad,0.50,100,0.35,0.74,0.30
-57,Morning Hustle,Dre Coast,hip hop,focused,0.55,92,0.58,0.72,0.12
-58,Gone Too Soon,Kay Mellow,hip hop,sad,0.45,80,0.20,0.62,0.25
-59,Campfire Chorus,Willow Creek,folk,relaxed,0.40,96,0.68,0.50,0.92
-60,Rainy Window Beats,LoRoom,lofi,sad,0.30,70,0.32,0.55,0.75
-61,Sunday Sheets,Mira Vale,pop,chill,0.40,96,0.65,0.62,0.40
-62,No More Lies,The Static Kids,rock,angry,0.90,150,0.30,0.55,0.08
+id,title,artist,genre,mood,energy,tempo_bpm,valence,danceability,acousticness,popularity,release_decade,mood_tags,speechiness,instrumentalness
+1,Sunrise City,Neon Echo,pop,happy,0.82,118,0.84,0.79,0.18,82,2020,euphoric;uplifting,0.05,0.00
+2,Midnight Coding,LoRoom,lofi,chill,0.42,78,0.56,0.62,0.71,64,2020,cozy;focused,0.04,0.85
+3,Storm Runner,Voltline,rock,intense,0.91,152,0.48,0.66,0.10,58,2000,aggressive;rebellious,0.06,0.02
+4,Library Rain,Paper Lanterns,lofi,chill,0.35,72,0.60,0.58,0.86,55,2020,cozy;peaceful,0.03,0.90
+5,Gym Hero,Max Pulse,pop,intense,0.93,132,0.77,0.88,0.05,77,2010,confident;euphoric,0.07,0.00
+6,Spacewalk Thoughts,Orbit Bloom,ambient,chill,0.28,60,0.65,0.41,0.92,40,2010,dreamy;peaceful,0.03,0.94
+7,Coffee Shop Stories,Slow Stereo,jazz,relaxed,0.37,90,0.71,0.54,0.89,48,2000,cozy;nostalgic,0.04,0.60
+8,Night Drive Loop,Neon Echo,synthwave,moody,0.75,110,0.49,0.73,0.22,61,2010,nostalgic;dreamy,0.04,0.65
+9,Focus Flow,LoRoom,lofi,focused,0.40,80,0.59,0.60,0.78,59,2020,focused;peaceful,0.03,0.88
+10,Rooftop Lights,Indigo Parade,indie pop,happy,0.76,124,0.81,0.82,0.35,70,2010,uplifting;hopeful,0.05,0.02
+11,Lagos Sunset,Ayo Rhythm,afrobeats,happy,0.72,104,0.86,0.88,0.20,85,2020,euphoric;playful,0.09,0.00
+12,Palm Wine Evening,Kola Waves,afrobeats,relaxed,0.55,98,0.74,0.80,0.38,62,2010,nostalgic;cozy,0.07,0.05
+13,Log Drum Nights,Soweto Keys,amapiano,chill,0.58,112,0.66,0.84,0.15,74,2020,dreamy;playful,0.08,0.45
+14,Late Night Verses,Kay Mellow,hip hop,chill,0.38,86,0.52,0.70,0.30,66,2010,nostalgic;confident,0.32,0.00
+15,Crown Up,Blaze Carter,hip hop,intense,0.88,140,0.62,0.81,0.06,80,2020,confident;aggressive,0.38,0.00
+16,Cold Streets,Grime Unit,drill,moody,0.78,142,0.28,0.74,0.08,69,2020,dark;aggressive,0.36,0.00
+17,Empty Chair,June Hollow,folk,sad,0.22,68,0.18,0.35,0.94,35,2000,heartbroken;melancholic,0.04,0.05
+18,Porch Light Morning,Willow Creek,folk,happy,0.48,104,0.82,0.60,0.90,42,2010,hopeful;cozy,0.04,0.10
+19,Stomp and Holler,Barn Fire,country,energetic,0.80,138,0.78,0.68,0.72,57,2010,playful;uplifting,0.06,0.03
+20,Velvet Hours,Nia Soul,r&b,romantic,0.45,76,0.58,0.68,0.40,72,1990,romantic;dreamy,0.08,0.00
+21,Rain on Glass,Lune Moth,classical,sad,0.15,64,0.22,0.20,0.97,30,1990,melancholic;peaceful,0.03,0.95
+22,Perreo Hasta Ya,Fuego Sur,reggaeton,energetic,0.85,96,0.80,0.90,0.12,88,2020,euphoric;playful,0.14,0.00
+23,Island Bounce,Yard Vibes,dancehall,happy,0.74,102,0.83,0.86,0.10,67,2000,playful;euphoric,0.18,0.00
+24,Breaking Point,Ironclad,metal,angry,0.96,168,0.25,0.40,0.02,45,2000,aggressive;rebellious,0.09,0.05
+25,Drift Current,Glass Harbor,liquid dnb,chill,0.50,172,0.60,0.55,0.20,38,2010,dreamy;hopeful,0.04,0.55
+26,Dancing Alone,Mira Vale,pop,sad,0.70,120,0.30,0.78,0.15,79,2010,heartbroken;euphoric,0.05,0.00
+27,Paper Walls,The Static Kids,rock,sad,0.55,96,0.30,0.45,0.40,50,1990,melancholic;heartbroken,0.05,0.03
+28,Open Highway,Steel Avenue,rock,happy,0.80,140,0.75,0.60,0.25,63,1980,uplifting;nostalgic,0.04,0.02
+29,Glacier Hum,Orbit Bloom,ambient,focused,0.18,55,0.45,0.25,0.80,28,2020,peaceful;focused,0.03,0.96
+30,Northern Drift,Still Waters,ambient,sad,0.22,62,0.25,0.30,0.70,25,2010,melancholic;dreamy,0.03,0.92
+31,Blue Corner,Miles Avenue Trio,jazz,moody,0.42,100,0.35,0.50,0.85,33,1980,dark;nostalgic,0.04,0.70
+32,Swing Shift,Brass Alley,jazz,energetic,0.78,168,0.82,0.75,0.70,36,1980,playful;nostalgic,0.05,0.50
+33,Chrome Horizon,Neon Echo,synthwave,energetic,0.85,128,0.70,0.80,0.05,54,2010,euphoric;nostalgic,0.04,0.60
+34,Lost Arcade,Pixel Ghost,synthwave,sad,0.50,95,0.28,0.60,0.12,41,2010,nostalgic;melancholic,0.04,0.70
+35,Paper Planes Summer,Indigo Parade,indie pop,relaxed,0.52,108,0.76,0.66,0.55,60,2010,hopeful;nostalgic,0.04,0.05
+36,Bedroom Static,Soft Signal,indie pop,sad,0.40,88,0.30,0.52,0.60,52,2020,melancholic;dreamy,0.05,0.10
+37,Sunday Groove,Soweto Keys,amapiano,happy,0.66,113,0.80,0.86,0.12,76,2020,euphoric;playful,0.07,0.40
+38,Piano Smoke,Deep Kasi,amapiano,moody,0.52,110,0.40,0.78,0.18,58,2020,dark;dreamy,0.06,0.50
+39,Back Block,Grime Unit,drill,intense,0.85,144,0.35,0.72,0.05,71,2020,aggressive;dark,0.40,0.00
+40,Quiet Before,South Ends,drill,sad,0.55,140,0.20,0.65,0.15,47,2020,melancholic;dark,0.30,0.00
+41,Dusty Road Home,Barn Fire,country,relaxed,0.42,92,0.70,0.55,0.85,49,2000,nostalgic;cozy,0.04,0.05
+42,Whiskey Letters,Cass Holloway,country,sad,0.35,80,0.22,0.45,0.80,44,1990,heartbroken;nostalgic,0.05,0.02
+43,Slow Motion Love,Nia Soul,r&b,romantic,0.38,70,0.62,0.62,0.45,68,2000,romantic;cozy,0.07,0.00
+44,Call Me Back,Jaylen Rose,r&b,sad,0.48,84,0.25,0.66,0.30,65,2020,heartbroken;romantic,0.10,0.00
+45,Spring Allegro,Vienna Strings,classical,happy,0.55,132,0.78,0.35,0.95,39,1990,uplifting;playful,0.03,0.94
+46,Study Nocturne,Lune Moth,classical,focused,0.20,70,0.48,0.22,0.98,46,2000,peaceful;focused,0.03,0.97
+47,Noche Lenta,Luna Calle,reggaeton,romantic,0.62,90,0.66,0.85,0.15,73,2020,romantic;dreamy,0.12,0.00
+48,Calor Total,Fuego Sur,reggaeton,happy,0.82,95,0.88,0.92,0.10,84,2020,euphoric;confident,0.15,0.00
+49,Sunday Rub,Yard Vibes,dancehall,relaxed,0.58,92,0.72,0.82,0.20,53,1990,cozy;nostalgic,0.16,0.00
+50,Bad Mind,Rudie King,dancehall,intense,0.88,104,0.55,0.85,0.06,64,2010,confident;aggressive,0.22,0.00
+51,Ashes Fall,Ironclad,metal,sad,0.80,120,0.15,0.30,0.05,37,2010,melancholic;dark,0.07,0.10
+52,Granite Throne,Stone Legion,metal,angry,0.94,180,0.30,0.38,0.01,34,1980,aggressive;dark,0.08,0.15
+53,Ocean Pulse,Glass Harbor,liquid dnb,relaxed,0.55,174,0.70,0.58,0.25,43,2010,peaceful;hopeful,0.04,0.60
+54,Rush Hour Rollers,Bass Theory,liquid dnb,energetic,0.88,174,0.72,0.65,0.05,51,2020,euphoric;confident,0.05,0.45
+55,Owambe Party,Ayo Rhythm,afrobeats,energetic,0.86,110,0.88,0.90,0.12,81,2020,euphoric;playful,0.10,0.00
+56,Missing You Lagos,Temi Grace,afrobeats,sad,0.50,100,0.35,0.74,0.30,58,2020,heartbroken;nostalgic,0.08,0.00
+57,Morning Hustle,Dre Coast,hip hop,focused,0.55,92,0.58,0.72,0.12,62,2020,confident;hopeful,0.34,0.00
+58,Gone Too Soon,Kay Mellow,hip hop,sad,0.45,80,0.20,0.62,0.25,60,2010,heartbroken;melancholic,0.30,0.00
+59,Campfire Chorus,Willow Creek,folk,relaxed,0.40,96,0.68,0.50,0.92,31,2000,cozy;nostalgic,0.04,0.05
+60,Rainy Window Beats,LoRoom,lofi,sad,0.30,70,0.32,0.55,0.75,50,2020,melancholic;cozy,0.03,0.86
+61,Sunday Sheets,Mira Vale,pop,chill,0.40,96,0.65,0.62,0.40,66,2020,cozy;romantic,0.05,0.00
+62,No More Lies,The Static Kids,rock,angry,0.90,150,0.30,0.55,0.08,55,2000,rebellious;aggressive,0.06,0.02

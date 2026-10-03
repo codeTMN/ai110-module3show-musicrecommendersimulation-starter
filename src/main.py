@@ -1,30 +1,17 @@
 """
 Command line runner for the Music Recommender Simulation.
 
-This file helps you quickly run and test your recommender.
-
-You will implement the functions in recommender.py:
-- load_songs
-- score_song
-- recommend_songs
+Examples:
+    python -m src.main                          # all profiles, balanced mode
+    python -m src.main --mode genre-first       # switch scoring mode
+    python -m src.main --diverse                # turn on the diversity penalty
+    python -m src.main --profile "Chill Lofi"   # run just one profile
 """
 
-from src.recommender import load_songs, recommend_songs, score_song
+import argparse
+import textwrap
 
-
-def print_recommendations(name: str, user_prefs: dict, songs: list, k: int = 5) -> None:
-    """Print a profile's top k songs with their scores and reasons."""
-    print("=" * 60)
-    print(f"Profile: {name}")
-    print("  " + ", ".join(f"{key}={value}" for key, value in user_prefs.items()))
-    print("=" * 60)
-
-    for rank, (song, score, _) in enumerate(recommend_songs(user_prefs, songs, k=k), start=1):
-        print(f"{rank}. {song['title']} by {song['artist']}  ({song['genre']}, {song['mood']})")
-        print(f"   Score: {score:.2f}")
-        for reason in score_song(user_prefs, song)[1]:
-            print(f"   - {reason}")
-        print()
+from src.recommender import load_songs, recommend_songs, MODES
 
 
 PROFILES = {
@@ -79,15 +66,71 @@ PROFILES = {
         "favorite_mood": "Chill",
         "target_energy": 0.35,
     },
+    # Uses the advanced features (popularity, decade, mood tags, speechiness, instrumentalness)
+    "Afrobeats Night Out (advanced)": {
+        "favorite_genre": "afrobeats",
+        "favorite_mood": "energetic",
+        "target_energy": 0.8,
+        "target_valence": 0.85,
+        "likes_acoustic": False,
+        "favorite_tags": ["euphoric", "playful"],
+        "preferred_decade": 2020,
+        "target_popularity": 80,
+        "target_speechiness": 0.1,
+        "target_instrumentalness": 0.0,
+    },
 }
 
 
+def format_table(headers: list, rows: list) -> str:
+    """Draw an ASCII table where each cell is a list of lines."""
+    widths = [max(len(line) for cell in [[h]] + [row[i] for row in rows] for line in cell)
+              for i, h in enumerate(headers)]
+    border = "+" + "+".join("-" * (w + 2) for w in widths) + "+"
+
+    def draw(cells: list) -> list:
+        height = max(len(cell) for cell in cells)
+        return ["| " + " | ".join((cell[n] if n < len(cell) else "").ljust(w)
+                                  for cell, w in zip(cells, widths)) + " |"
+                for n in range(height)]
+
+    lines = [border, *draw([[h] for h in headers]), border]
+    for row in rows:
+        lines += draw(row) + [border]
+    return "\n".join(lines)
+
+
+def print_recommendations(name: str, user_prefs: dict, songs: list, mode, diverse: bool, k: int = 5) -> None:
+    """Print a profile's top k songs as a table with scores and reasons."""
+    print(f"Profile: {name}   (mode: {mode.name}{', diverse' if diverse else ''})")
+    print(textwrap.fill(", ".join(f"{key}={value}" for key, value in user_prefs.items()),
+                        width=100, initial_indent="  ", subsequent_indent="  "))
+
+    rows = []
+    for rank, (song, score, explanation) in enumerate(
+            recommend_songs(user_prefs, songs, k=k, mode=mode, diverse=diverse), start=1):
+        reasons = [line for reason in explanation.split("; ") for line in textwrap.wrap(reason, 44)]
+        rows.append([[str(rank)], [song["title"], f"by {song['artist']}"],
+                     [song["genre"], song["mood"]], [f"{score:.2f}"], reasons])
+
+    print(format_table(["#", "Song", "Genre / Mood", "Score", "Why"], rows))
+    print()
+
+
 def main() -> None:
+    parser = argparse.ArgumentParser(description="Music Recommender Simulation")
+    parser.add_argument("--mode", choices=MODES, default="balanced", help="scoring mode to use")
+    parser.add_argument("--diverse", action="store_true", help="penalize repeat artists and genres")
+    parser.add_argument("--profile", choices=PROFILES, help="run only this profile")
+    args = parser.parse_args()
+
     songs = load_songs("data/songs.csv")
-    print(f"Loaded songs: {len(songs)}\n")
+    print(f"Loaded songs: {len(songs)}")
+    print(f"Mode: {args.mode} - {MODES[args.mode].description}\n")
 
     for name, user_prefs in PROFILES.items():
-        print_recommendations(name, user_prefs, songs)
+        if args.profile is None or args.profile == name:
+            print_recommendations(name, user_prefs, songs, MODES[args.mode], args.diverse)
 
 
 if __name__ == "__main__":
