@@ -27,28 +27,67 @@ def print_recommendations(name: str, user_prefs: dict, songs: list, k: int = 5) 
         print()
 
 
-def main() -> None:
-    songs = load_songs("data/songs.csv")
-    print(f"Loaded songs: {len(songs)}\n")
-
-    # Starter example profile
-    pop_happy = {
+PROFILES = {
+    # Normal listeners
+    "High-Energy Pop": {
         "favorite_genre": "pop",
         "favorite_mood": "happy",
-        "target_energy": 0.8,
-    }
-
-    # My taste profile (see README "My taste profile")
-    chill_hip_hop = {
+        "target_energy": 0.85,
+        "target_valence": 0.8,
+        "likes_acoustic": False,
+    },
+    "Chill Lofi": {
+        "favorite_genre": "lofi",
+        "favorite_mood": "chill",
+        "target_energy": 0.35,
+        "likes_acoustic": True,
+    },
+    "Deep Intense Rock": {
+        "favorite_genre": "rock",
+        "favorite_mood": "intense",
+        "target_energy": 0.9,
+        "target_valence": 0.4,
+        "likes_acoustic": False,
+    },
+    "Chill Hip Hop (mine)": {
         "favorite_genre": "hip hop",
         "favorite_mood": "chill",
         "target_energy": 0.35,
         "target_valence": 0.5,
         "likes_acoustic": False,
-    }
+    },
+    # Edge cases: profiles meant to trick the scoring
+    "Edge: high energy but sad": {
+        "favorite_genre": "pop",
+        "favorite_mood": "sad",
+        "target_energy": 0.9,
+        "target_valence": 0.2,
+    },
+    "Edge: acoustic metalhead": {
+        "favorite_genre": "metal",
+        "favorite_mood": "angry",
+        "target_energy": 0.95,
+        "likes_acoustic": True,
+    },
+    "Edge: genre not in catalog": {
+        "favorite_genre": "k-pop",
+        "favorite_mood": "happy",
+        "target_energy": 0.75,
+    },
+    "Edge: capital letters": {
+        "favorite_genre": "Hip Hop",
+        "favorite_mood": "Chill",
+        "target_energy": 0.35,
+    },
+}
 
-    print_recommendations("Pop / happy (default)", pop_happy, songs)
-    print_recommendations("Chill hip hop (mine)", chill_hip_hop, songs)
+
+def main() -> None:
+    songs = load_songs("data/songs.csv")
+    print(f"Loaded songs: {len(songs)}\n")
+
+    for name, user_prefs in PROFILES.items():
+        print_recommendations(name, user_prefs, songs)
 
 
 if __name__ == "__main__":

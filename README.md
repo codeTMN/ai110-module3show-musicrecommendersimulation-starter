@@ -143,42 +143,111 @@ You can add more tests in `tests/test_recommender.py`.
 
 ## Sample Recommendation Output
 
-Paste a sample of your recommender's output here as a text block so a reader can see what it produces:
+Here is what the recommender prints when you run `python -m src.main`. These are two of the 8 profiles. The rest are in the [model card](model_card.md#7-evaluation).
 
 ```
-# e.g.:
-# User profile: genre=indie, mood=chill, energy=low
-# Recommendations:
-#   1. ...
-#   2. ...
-#   3. ...
-```
+Loaded songs: 62
 
-**Screenshot or video** *(optional)*: <!-- Insert a screenshot or demo video link here -->
+============================================================
+Profile: High-Energy Pop
+  favorite_genre=pop, favorite_mood=happy, target_energy=0.85, target_valence=0.8, likes_acoustic=False
+============================================================
+1. Sunrise City by Neon Echo  (pop, happy)
+   Score: 11.08
+   - energy 0.82 vs your 0.85 (+3.88)
+   - valence 0.84 vs your 0.80 (+2.88)
+   - mood match: happy (+2.0)
+   - genre match: pop (+1.5)
+   - not acoustic fit (+0.82)
+
+2. Calor Total by Fuego Sur  (reggaeton, happy)
+   Score: 9.54
+   - energy 0.82 vs your 0.85 (+3.88)
+   - valence 0.88 vs your 0.80 (+2.76)
+   - mood match: happy (+2.0)
+   - not acoustic fit (+0.90)
+
+3. Open Highway by Steel Avenue  (rock, happy)
+   Score: 9.40
+   - energy 0.80 vs your 0.85 (+3.80)
+   - valence 0.75 vs your 0.80 (+2.85)
+   - mood match: happy (+2.0)
+   - not acoustic fit (+0.75)
+
+4. Island Bounce by Yard Vibes  (dancehall, happy)
+   Score: 9.37
+   - energy 0.74 vs your 0.85 (+3.56)
+   - valence 0.83 vs your 0.80 (+2.91)
+   - mood match: happy (+2.0)
+   - not acoustic fit (+0.90)
+
+5. Rooftop Lights by Indigo Parade  (indie pop, happy)
+   Score: 9.26
+   - energy 0.76 vs your 0.85 (+3.64)
+   - valence 0.81 vs your 0.80 (+2.97)
+   - mood match: happy (+2.0)
+   - not acoustic fit (+0.65)
+
+============================================================
+Profile: Chill Hip Hop (mine)
+  favorite_genre=hip hop, favorite_mood=chill, target_energy=0.35, target_valence=0.5, likes_acoustic=False
+============================================================
+1. Late Night Verses by Kay Mellow  (hip hop, chill)
+   Score: 11.02
+   - energy 0.38 vs your 0.35 (+3.88)
+   - valence 0.52 vs your 0.50 (+2.94)
+   - mood match: chill (+2.0)
+   - genre match: hip hop (+1.5)
+   - not acoustic fit (+0.70)
+
+2. Sunday Sheets by Mira Vale  (pop, chill)
+   Score: 8.95
+   - energy 0.40 vs your 0.35 (+3.80)
+   - valence 0.65 vs your 0.50 (+2.55)
+   - mood match: chill (+2.0)
+   - not acoustic fit (+0.60)
+
+3. Drift Current by Glass Harbor  (liquid dnb, chill)
+   Score: 8.90
+   - energy 0.50 vs your 0.35 (+3.40)
+   - valence 0.60 vs your 0.50 (+2.70)
+   - mood match: chill (+2.0)
+   - not acoustic fit (+0.80)
+
+4. Library Rain by Paper Lanterns  (lofi, chill)
+   Score: 8.84
+   - energy 0.35 vs your 0.35 (+4.00)
+   - valence 0.60 vs your 0.50 (+2.70)
+   - mood match: chill (+2.0)
+   - not acoustic fit (+0.14)
+
+5. Midnight Coding by LoRoom  (lofi, chill)
+   Score: 8.83
+   - energy 0.42 vs your 0.35 (+3.72)
+   - valence 0.56 vs your 0.50 (+2.82)
+   - mood match: chill (+2.0)
+   - not acoustic fit (+0.29)
+```
 
 ---
 
 ## Experiments You Tried
 
-Use this section to document the experiments you ran. For example:
+I tested 8 user profiles (4 normal ones and 4 tricky edge cases) and ran 2 experiments on the weights. The full write-up is in the [model card](model_card.md#7-evaluation).
 
-- What happened when you changed the weight on genre from 2.0 to 0.5
-- What happened when you added tempo or valence to the score
-- How did your system behave for different types of users
+- **Doubled energy (4.0 to 8.0) and cut genre in half (1.5 to 0.75):** Mostly the same songs came back in a slightly different order. The results were different, not better. For a "high energy but sad" listener it got worse, because angry metal songs started showing up instead of sad songs.
+- **Turned off the mood rule:** This made things clearly worse. *Gym Hero*, a pop workout song that's intense, not happy, jumped to #2 for a happy pop fan. Sad and hype rap songs also got into my chill hip hop list. Mood is doing a lot of the work.
+- **Different users:** A happy pop fan and a chill lofi fan got no songs in common, which makes sense since they want opposite energy. A chill lofi fan and a chill hip hop fan got almost the same list, because they want the same vibe.
 
 ---
 
 ## Limitations and Risks
 
-Summarize some limitations of your recommender.
-
-Examples:
-
-- It only works on a tiny catalog
-- It does not understand lyrics or language
-- It might over favor one genre or mood
-
-You will go deeper on this in your model card.
+- **Genre fans get mixed results.** Genre is worth only 1.5 points, so a rock fan got drill, dancehall, and hip hop songs in their top 5 just because those songs had the right energy.
+- **Capital letters break it.** Typing "Hip Hop" instead of "hip hop" makes the genre and mood checks fail without any warning.
+- **The acoustic preference barely does anything.** It's worth so little that an "acoustic metal" fan still got all-electric songs.
+- **Small, uneven catalog.** Only 62 made-up songs, with 14 sad songs but only 3 romantic ones.
+- **It doesn't understand lyrics, language, or what you've listened to before.**
 
 ---
 
